@@ -1,0 +1,44 @@
+{
+  "name": "ghost-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "npm": "please-use-yarn",
+    "yarn": ">= 1.17.3",
+    "node": ">= 14.16.0"
+  },
+  "scripts": {
+    "generate": "graphql-codegen --config codegen.yml",
+    "compile": "npm run generate && tsc",
+    "preinstall": "npx only-allow yarn",
+    "postinstall": "npm run compile",
+    "start": "npm run compile && node ./dist/index.js",
+    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \"",
+    "codegen": "graphql-codegen --config codegen.yml",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@apollo/server": "^4.10.1",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^19.0.3",
+    "@commitlint/config-conventional": "^19.0.3",
+    "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/introspection": "4.0.3",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@types/node": "^20.11.25",
+    "concurrently": "^8.2.2",
+    "husky": "^9.0.11",
+    "nodemon": "^3.1.0"
+  },
+  "packageManager": "yarn@4.1.1"
+}
