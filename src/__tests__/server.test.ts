@@ -1,7 +1,7 @@
-import { App } from 'supertest/types';
-import { createApolloServer } from '../server';
-
 import request from 'supertest';
+import { App } from 'supertest/types';
+
+import { createApolloServer } from '../server';
 
 const getBooks = {
   query: `query GetBooks {

@@ -1,9 +1,14 @@
 import { ApolloServer } from '@apollo/server';
 import { startStandaloneServer } from '@apollo/server/standalone';
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader';
+import { loadSchema } from '@graphql-tools/load';
+import { addResolversToSchema } from '@graphql-tools/schema';
 import { ListenOptions } from 'net';
-import { readFileSync } from 'fs';
-import resolvers from './resolvers/index.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import { BooksDataSource } from './datasources.js';
+import resolvers from './resolvers/index.js';
 
 export interface MyContext {
   dataSources: {
@@ -11,17 +16,19 @@ export interface MyContext {
   };
 }
 
-// Note: this only works locally because it relies on `npm` routing
-// from the root directory of the project.
-const typeDefs = readFileSync('./schema.graphql', { encoding: 'utf-8' });
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const schema = await loadSchema(path.join(__dirname, '../schema.graphql'), {
+  loaders: [new GraphQLFileLoader()]
+});
+
+const schemaWithResolvers = addResolversToSchema({ schema, resolvers });
 
 export const createApolloServer = async (
   listenOptions: ListenOptions = { port: 4000 }
 ): Promise<{ server: ApolloServer<MyContext>; url: string }> => {
-  const server = new ApolloServer<MyContext>({
-    typeDefs,
-    resolvers
-  });
+  const server = new ApolloServer<MyContext>({ schema: schemaWithResolvers });
 
   const { url } = await startStandaloneServer(server, {
     listen: listenOptions,

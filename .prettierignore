@@ -8,3 +8,4 @@ yarn.lock
 .eslintrc
 .husky/pre-commit
 .prettierignore
+graphql.schema.json

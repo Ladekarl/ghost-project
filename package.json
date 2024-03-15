@@ -2,22 +2,20 @@
   "name": "ghost-project",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "keywords": [],
+  "license": "ISC",
+  "author": "",
   "type": "module",
-  "engines": {
-    "npm": "please-use-yarn",
-    "yarn": ">= 2",
-    "node": ">= 14.16.0"
-  },
+  "main": "dist/index.js",
   "scripts": {
-    "generate": "graphql-codegen --config codegen.yml",
     "compile": "yarn generate && tsc",
-    "test": "yarn compile && node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "generate": "graphql-codegen --config codegen.yml",
     "preinstall": "npx only-allow yarn",
     "postinstall": "yarn compile",
+    "prepare": "husky",
     "start": "yarn compile && node ./dist/index.js",
-    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"yarn generate --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \"",
-    "prepare": "husky"
+    "test": "yarn compile && node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"yarn generate --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \""
   },
   "lint-staged": {
     "**/*": [
@@ -27,11 +25,10 @@
       "eslint --max-warnings 0 ."
     ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.1",
+    "@graphql-tools/graphql-file-loader": "^8.0.1",
+    "@graphql-tools/load": "^8.0.2",
     "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
@@ -53,6 +50,7 @@
     "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@graphql-tools/schema": "^10.0.3",
     "@parcel/watcher": "^2.4.1",
+    "@trivago/prettier-plugin-sort-imports": "^4.3.0",
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9",
     "@types/lodash": "^4",
@@ -75,5 +73,10 @@
     "ts-jest": "^29.1.2",
     "typescript": "^5.4.2"
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "yarn@4.1.1",
+  "engines": {
+    "node": ">= 14.16.0",
+    "npm": "please-use-yarn",
+    "yarn": ">= 2"
+  }
 }
