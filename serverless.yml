@@ -1,0 +1,38 @@
+org: nielsladekarl
+app: apollo-lambda
+
+service: apollo-lambda
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs16.x
+  timeout: 15
+  httpApi:
+    cors: true
+  region: eu-central-1
+  environment:
+    SLS_DISABLE_TRACE_SAMPLING: true
+    NODE_ENV: ${env:NODE_ENV}
+
+functions:
+  graphql:
+    handler: src/handler.graphqlHandler
+    events:
+      - http:
+          private: false
+          path: /
+          method: post
+      - http:
+          private: false
+          path: /
+          method: get
+
+custom:
+  serverless-offline:
+    useChildProcesses: true

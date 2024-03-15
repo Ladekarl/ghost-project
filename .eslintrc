@@ -27,7 +27,6 @@
       }
     ],
     "eol-last": ["error", "always"],
-    "@typescript-eslint/indent": ["error", 2],
     "@typescript-eslint/comma-spacing": [
       "error",
       {
@@ -44,7 +43,6 @@
     "@typescript-eslint/no-empty-function": 0,
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-non-null-assertion": 0,
-    "@typescript-eslint/explicit-function-return-type": 2,
     "array-bracket-spacing": [2, "never"],
     "space-in-parens": [2, "never"],
     "@typescript-eslint/no-unused-vars": [

@@ -2,6 +2,7 @@ dist
 **/__generated__/**
 .yarn
 yarn.lock
+.gitignore
 .editorconfig
 .env*
 .eslintignore
@@ -9,3 +10,5 @@ yarn.lock
 .husky/pre-commit
 .prettierignore
 graphql.schema.json
+.build
+.serverless

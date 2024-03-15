@@ -27,6 +27,8 @@
 
 # Ignore the compiled output.
 dist/
+.build/
+.serverless/
 
 # TypeScript incremental compilation cache
 *.tsbuildinfo
