@@ -13,6 +13,9 @@ provider:
   name: aws
   runtime: nodejs16.x
   timeout: 15
+  apiGateway:
+    apiKeys:
+      - ${env:SLS_API_KEY}
   httpApi:
     cors: true
   region: eu-central-1
@@ -25,12 +28,12 @@ functions:
     handler: src/handler.graphqlHandler
     events:
       - http:
-          private: false
-          path: /
+          private: true
+          path: graphql
           method: post
       - http:
-          private: false
-          path: /
+          private: true
+          path: graphql
           method: get
 
 custom:

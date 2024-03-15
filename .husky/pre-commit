@@ -1,3 +1,2 @@
-npx sort-package-json
 npx lint-staged
 yarn test

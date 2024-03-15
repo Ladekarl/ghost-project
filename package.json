@@ -13,7 +13,7 @@
     "dev": "serverless offline start --reloadHandler",
     "generate": "graphql-codegen --config codegen.yml",
     "preinstall": "npx only-allow yarn",
-    "postinstall": "yarn compile",
+    "postinstall": "npx sort-package-json && yarn compile",
     "prepare": "husky",
     "test": "yarn compile && node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
