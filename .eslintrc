@@ -53,5 +53,18 @@
         "args": "after-used"
       }
     ]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["*.graphql"],
+      "parser": "@graphql-eslint/eslint-plugin",
+      "parserOptions": {
+        "schema": "./schema.graphql"
+      },
+      "plugins": ["@graphql-eslint"],
+      "rules": {
+        "@graphql-eslint/known-type-names": "error"
+      }
+    }
+  ]
 }

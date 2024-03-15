@@ -1,9 +1,13 @@
+overwrite: true
 schema: './schema.graphql'
 generates:
-  ./src/__generated__/resolvers-types.ts:
+  src/__generated__/resolvers-types.ts:
     plugins:
       - 'typescript'
       - 'typescript-resolvers'
     config:
       useIndexSignature: true
-      contextType: '../index#MyContext'
+      contextType: '../server#MyContext'
+  ./graphql.schema.json:
+    plugins:
+      - 'introspection'

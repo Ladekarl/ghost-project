@@ -6,7 +6,7 @@
   "type": "module",
   "engines": {
     "npm": "please-use-yarn",
-    "yarn": ">= 1.17.3",
+    "yarn": ">= 2",
     "node": ">= 14.16.0"
   },
   "scripts": {
@@ -16,15 +16,14 @@
     "preinstall": "npx only-allow yarn",
     "postinstall": "yarn compile",
     "start": "yarn compile && node ./dist/index.js",
-    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \"",
-    "codegen": "graphql-codegen --config codegen.yml",
+    "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"yarn generate --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \"",
     "prepare": "husky"
   },
   "lint-staged": {
     "**/*": [
       "prettier --write"
     ],
-    "*.{js,jsx,ts,tsx}": [
+    "**/*.{js,jsx,ts,tsx,grapqhl} !(**/__generated__)": [
       "eslint --max-warnings 0 ."
     ]
   },
@@ -48,9 +47,12 @@
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
     "@graphql-codegen/cli": "5.0.2",
+    "@graphql-codegen/introspection": "4.0.3",
     "@graphql-codegen/typescript": "4.0.6",
     "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@graphql-eslint/eslint-plugin": "^3.20.1",
     "@graphql-tools/schema": "^10.0.3",
+    "@parcel/watcher": "^2.4.1",
     "@types/jest": "^29.5.12",
     "@types/jsonwebtoken": "^9",
     "@types/lodash": "^4",
