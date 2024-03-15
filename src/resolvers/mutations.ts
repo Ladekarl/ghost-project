@@ -1,4 +1,4 @@
-import { MutationResolvers } from "../__generated__/resolvers-types";
+import { MutationResolvers } from '../__generated__/resolvers-types';
 
 // Use the generated `MutationResolvers` type to type check our mutations!
 const mutations: MutationResolvers = {
@@ -6,7 +6,7 @@ const mutations: MutationResolvers = {
   // example, so we won't actually modify our data.
   addBook: async (_, { title, author }, { dataSources }) => {
     return dataSources.booksAPI.addBook({ title, author });
-  },
+  }
 };
 
 export default mutations;

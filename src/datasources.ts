@@ -1,16 +1,16 @@
 // Use our automatically generated Book and AddBookMutationResponse types
 // for type safety in our data source class
-import { AddBookMutationResponse, Book } from "./__generated__/resolvers-types";
+import { AddBookMutationResponse, Book } from './__generated__/resolvers-types';
 
-const BooksDB: Omit<Required<Book>, "__typename">[] = [
+const BooksDB: Omit<Required<Book>, '__typename'>[] = [
   {
-    title: "The Awakening",
-    author: "Kate Chopin",
+    title: 'The Awakening',
+    author: 'Kate Chopin'
   },
   {
-    title: "City of Glass",
-    author: "Paul Auster",
-  },
+    title: 'City of Glass',
+    author: 'Paul Auster'
+  }
 ];
 
 export class BooksDataSource {
@@ -27,17 +27,17 @@ export class BooksDataSource {
       BooksDB.push({ title: book.title, author: book.author });
 
       return {
-        code: "200",
+        code: '200',
         success: true,
-        message: "New book added!",
-        book,
+        message: 'New book added!',
+        book
       };
     } else {
       return {
-        code: "400",
+        code: '400',
         success: false,
-        message: "Invalid input",
-        book: null,
+        message: 'Invalid input',
+        book: null
       };
     }
   }

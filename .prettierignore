@@ -1,0 +1,10 @@
+dist
+**/__generated__/**
+.yarn
+yarn.lock
+.editorconfig
+.env*
+.eslintignore
+.eslintrc
+.husky/pre-commit
+.prettierignore

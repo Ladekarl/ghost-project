@@ -1,4 +1,4 @@
-import { QueryResolvers } from "../__generated__/resolvers-types";
+import { QueryResolvers } from '../__generated__/resolvers-types';
 
 // Use the generated `QueryResolvers` type to type check our queries!
 const queries: QueryResolvers = {
@@ -6,7 +6,7 @@ const queries: QueryResolvers = {
   // can check the properties within our resolver's shared context value.
   books: async (_, __, { dataSources }) => {
     return dataSources.booksAPI.getBooks();
-  },
+  }
 };
 
 export default queries;

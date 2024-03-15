@@ -2,7 +2,7 @@
   "name": "ghost-project",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
   "type": "module",
   "engines": {
     "npm": "please-use-yarn",
@@ -11,34 +11,67 @@
   },
   "scripts": {
     "generate": "graphql-codegen --config codegen.yml",
-    "compile": "npm run generate && tsc",
+    "compile": "yarn generate && tsc",
+    "test": "yarn compile && node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "preinstall": "npx only-allow yarn",
-    "postinstall": "npm run compile",
-    "start": "npm run compile && node ./dist/index.js",
+    "postinstall": "yarn compile",
+    "start": "yarn compile && node ./dist/index.js",
     "watch": "concurrently  --names \"CodeGen,TS,Nodemon\" -c \"bgYellow,bgBlue,bgMagenta\" \"graphql-codegen --watch 'src/**/*.ts'\"  \"tsc -w \" \"nodemon ./dist/index.js \"",
     "codegen": "graphql-codegen --config codegen.yml",
     "prepare": "husky"
+  },
+  "lint-staged": {
+    "**/*": [
+      "prettier --write"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --max-warnings 0 ."
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@apollo/server": "^4.10.1",
+    "dotenv": "^16.4.5",
     "graphql": "^16.8.1",
     "graphql-tag": "^2.12.6",
-    "typescript": "^5.4.2"
+    "jsonwebtoken": "^9.0.2",
+    "lodash": "^4.17.21",
+    "multer": "^1.4.5-lts.1",
+    "pino": "^8.19.0",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.20",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.0.3",
     "@commitlint/config-conventional": "^19.0.3",
     "@graphql-codegen/cli": "5.0.2",
-    "@graphql-codegen/introspection": "4.0.3",
     "@graphql-codegen/typescript": "4.0.6",
     "@graphql-codegen/typescript-resolvers": "4.0.6",
+    "@graphql-tools/schema": "^10.0.3",
+    "@types/jest": "^29.5.12",
+    "@types/jsonwebtoken": "^9",
+    "@types/lodash": "^4",
+    "@types/multer": "^1.4.11",
     "@types/node": "^20.11.25",
+    "@types/pino": "^7.0.5",
+    "@types/supertest": "^6.0.2",
+    "@types/uuid": "^9",
+    "@typescript-eslint/eslint-plugin": "^7.2.0",
+    "@typescript-eslint/parser": "^7.2.0",
     "concurrently": "^8.2.2",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
     "husky": "^9.0.11",
-    "nodemon": "^3.1.0"
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.2",
+    "nodemon": "^3.1.0",
+    "prettier": "^3.2.5",
+    "supertest": "^6.3.4",
+    "ts-jest": "^29.1.2",
+    "typescript": "^5.4.2"
   },
   "packageManager": "yarn@4.1.1"
 }
