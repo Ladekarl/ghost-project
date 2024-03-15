@@ -7,6 +7,9 @@ plugins:
   - serverless-plugin-typescript
   - serverless-offline
 
+dashboard:
+  disableMonitoring: true
+
 useDotenv: true
 
 provider:
@@ -15,11 +18,13 @@ provider:
   timeout: 15
   apiGateway:
     apiKeys:
-      - ${env:SLS_API_KEY}
+      - value: ${env:SLS_API_KEY}
   httpApi:
     cors: true
   region: eu-central-1
   environment:
+    SLS_DISABLE_HTTP_MONITORING: true
+    SLS_DISABLE_AWS_SDK_MONITORING: true
     SLS_DISABLE_TRACE_SAMPLING: true
     NODE_ENV: ${env:NODE_ENV}
 
