@@ -36,11 +36,14 @@ functions:
           private: true
           path: graphql
           method: post
+          cors: true
       - http:
           private: true
           path: graphql
           method: get
+          cors: true
 
 custom:
   serverless-offline:
     useChildProcesses: true
+    httpPort: 4000
